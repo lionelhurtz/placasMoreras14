@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Temperatura Placas</title>
+	<link rel="stylesheet" href="assets/css/style.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple"/>
+
+  <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.6/angular-locale_es-es.js"></script>
+	<script src="assets/js/directives/script.js"></script>
+	<script src="assets/js/controllers/placasCtrl.js"></script>
+
+  <script src="assets/js/directives/Chart.js"></script>
+  <script src="assets/js/directives/angular-chart.js"></script>
+
+  <script src="assets/js/directives/Chart.min.js"></script>
+  <script src="assets/js/directives/angular-chart.min.js"></script>
+  <link rel="shortcut icon" href="assets/img/temp2.png">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+</head>
+<body ng-controller="myController" onload="setInterval('location.reload()',3600000)">
+	<h1 class="font-effect-shadow-multiple">Temperatura Recirculación Escalera A Moreras</h1>
+	<table>
+		<tr>
+			<td><div ng-app="app" class="ajustado2"><tg-thermometer-vertical percent="{{tempRecirculacion.value}}" unit="{{tempRecirculacion.unit}}"  height="220" /></tg-thermometer-vertical></div></td>
+			<td><div ng-app="app" class="ajustado2"><tg-thermometer-vertical percent="{{tempDeposito1.value}}" unit="{{tempDeposito1.unit}}"  height="220" /></tg-thermometer-vertical></div></td>
+			<td><div ng-app="app" class="ajustado2"><tg-thermometer-vertical percent="{{tempDeposito2.value}}" unit="{{tempDeposito2.unit}}"  height="220" /></tg-thermometer-vertical></div></td>
+			<td><div ng-app="app" class="ajustado2"><tg-thermometer-vertical percent="{{tempCaptadores.value}}" unit="{{tempCaptadores.unit}}"  height="220" /></tg-thermometer-vertical></div></td>
+		</tr>
+		<tr>
+			<td><h3>{{tempRecirculacion.name}}</h3></td>
+			<td><h3>{{tempDeposito1.name}}</h3></td>
+			<td><h3>{{tempDeposito2.name}}</h3></td>
+			<td><h3>{{tempCaptadores.name}}</h3></td>
+		</tr>
+	</table>
+	<h2>Resumen datos:</h2>
+		<div ng-if="presion.value >2.6">
+			<li> Presión actual {{presion.value}}{{presion.unit}} <img src="/assets/img/alerta_roja.png" title="Se ha superado la presion normal" alt="Alerta!!!" height="20" width="20">
+				<div ng-if="alertaPresion === true">
+					<img src="/assets/img/alerta_roja.png" alt="Alerta!!!" height="20" width="20"> Se ha producido una sobrepresión a las {{presion.inicioAlerta | date:'mediumTime'}} hasta las {{presion.finAlerta | date:'mediumTime'}}  valor máximo {{presion.maxValue}}
+				</div>
+			</li>
+		</div>
+		<div ng-if="presion.value <2.7">
+			<li> Presión actual {{presion.value}}{{presion.unit}}
+				<div ng-if="alertaPresion === true">
+					<img src="/assets/img/alerta_roja.png" alt="Alerta!!!" height="20" width="20"> Se ha producido una sobrepresión desde las {{presion.inicioAlerta | date:'mediumTime'}} hasta las {{presion.finAlerta | date:'mediumTime'}}  valor máximo {{presion.maxValue}}
+				</div>
+			</li>
+		</div>
+ 	  <div ng-if="bombaRecirculacion === 'on'">
+			<li>Bomba Recirculación :<img src="/assets/img/Gerotor_Trans.gif" alt="Bomba activada" height="60" width="90" title="Activada"> encendida {{bombaRecirculacionTiempoOn}}</li>
+		</div>
+		<div ng-if="bombaRecirculacion === 'off'">
+			<li>Bomba Recirculación :<img src="/assets/img/Gerotor_off.jpg" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaRecirculacionTiempoOn}}</li>
+		</div>
+		<div ng-if="bombaPrimario === 'on'">
+			<li>Bomba Primaria :<img src="/assets/img/Gerotor_Trans.gif" alt="Bomba activada" height="60" width="90" title="Activada"> encendida {{bombaPrimariaTiempoOn}}</li>
+		</div>
+		<div ng-if="bombaPrimario === 'off'">
+			<li>Bomba Primaria :<img src="/assets/img/Gerotor_off.jpg" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaPrimariaTiempoOn}}</li>
+		</div>
+ 	<h2>Medias de las ultimas {{tiempoDatos}}:</h2>
+<!--
+		  <li>{{tempRecirculacion.name}}: {{tempRecirculacion.tempMedia}}{{tempRecirculacion.unit}}
+				  (Max. {{tempRecirculacion.tempMax.value}}{{tempRecirculacion.unit}} a las {{tempRecirculacion.tempMax.timestamp | date:'mediumTime'}}
+					 Min. {{tempRecirculacion.tempMin.value}}{{tempRecirculacion.unit}} a las {{tempRecirculacion.tempMin.timestamp | date:'mediumTime'}})</li>
+			<li>{{tempDeposito1.name}}: {{tempDeposito1.tempMedia}}{{tempDeposito1.unit}}
+				(Max. {{tempDeposito1.tempMax.value}}{{tempDeposito1.unit}} a las {{tempDeposito1.tempMax.timestamp | date:'mediumTime'}}
+				 Min. {{tempDeposito1.tempMin.value}}{{tempDeposito1.unit}} a las {{tempDeposito1.tempMin.timestamp | date:'mediumTime'}})</li>
+			<li>{{tempDeposito2.name}}: {{tempDeposito2.tempMedia}}{{tempDeposito2.unit}}
+				(Max. {{tempDeposito2.tempMax.value}}{{tempDeposito2.unit}} a las {{tempDeposito2.tempMax.timestamp | date:'mediumTime'}}
+				 Min. {{tempDeposito2.tempMin.value}}{{tempDeposito2.unit}} a las {{tempDeposito2.tempMin.timestamp | date:'mediumTime'}})</li>
+			<li>{{tempCaptadores.name}}: {{tempCaptadores.tempMedia}}{{tempCaptadores.unit}}
+				(Max. {{tempCaptadores.tempMax.value}}{{tempCaptadores.unit}} a las {{tempCaptadores.tempMax.timestamp | date:'mediumTime'}}
+				 Min. {{tempCaptadores.tempMin.value}}{{tempCaptadores.unit}} a las {{tempCaptadores.tempMin.timestamp | date:'mediumTime'}})</li>
+			<li>Bomba recirculación encendida {{bombaRecirculacionTiempoOn}}</li>
+			<li>Bomba primaria encendida {{bombaPrimariaTiempoOn}}</li>
+-->
+          <table class="table1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="red" scope="col" abbr="Máxima">Tª Máxima</th>
+                        <th class="orange" scope="col" abbr="Media">Tª Media</th>
+                        <th class="blue" scope="col" abbr="Minima">Tª Minima</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{tempRecirculacion.name}}</th>
+                        <td class="red" >{{tempRecirculacion.tempMax.value}}{{tempRecirculacion.unit}} a las {{tempRecirculacion.tempMax.timestamp | date:'mediumTime'}}</td>
+                        <td class="orange">{{tempRecirculacion.tempMedia}}{{tempRecirculacion.unit}}</td>
+                        <td class="blue">{{tempRecirculacion.tempMin.value}}{{tempRecirculacion.unit}} a las {{tempRecirculacion.tempMin.timestamp | date:'mediumTime'}}</td>
+                    </tr>
+					<tr>
+						<th  scope="row">{{tempDeposito1.name}}</th>
+						<td class="red" >{{tempDeposito1.tempMax.value}}{{tempDeposito1.unit}} a las {{tempDeposito1.tempMax.timestamp | date:'mediumTime'}}</td>
+						<td class="orange">{{tempDeposito1.tempMedia}}{{tempDeposito1.unit}}</td>
+						<td class="blue">{{tempDeposito1.tempMin.value}}{{tempDeposito1.unit}} a las {{tempDeposito1.tempMin.timestamp | date:'mediumTime'}}</td>
+					</tr>
+					<tr>
+						<th scope="row">{{tempDeposito2.name}}</th>
+						<td class="red" >{{tempDeposito2.tempMax.value}}{{tempDeposito2.unit}} a las {{tempDeposito2.tempMax.timestamp | date:'mediumTime'}}</td>
+						<td class="orange">{{tempDeposito2.tempMedia}}{{tempDeposito2.unit}}</td>
+						<td class="blue">{{tempDeposito2.tempMin.value}}{{tempDeposito2.unit}} a las {{tempDeposito2.tempMin.timestamp | date:'mediumTime'}}</td>
+                    </tr>
+                    <tr>
+						<th scope="row">{{tempCaptadores.name}}</th>
+						<td class="red" >{{tempCaptadores.tempMax.value}}{{tempCaptadores.unit}} a las {{tempCaptadores.tempMax.timestamp | date:'mediumTime'}}</td>
+						<td class="orange">{{tempCaptadores.tempMedia}}{{tempCaptadores.unit}}</td>
+						<td class="blue">{{tempCaptadores.tempMin.value}}{{tempCaptadores.unit}} a las {{tempCaptadores.tempMin.timestamp | date:'mediumTime'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+	<div ng-if="alerta == 'S'">
+    <h2><img src="/assets/img/alerta_roja.png" alt="Alerta!!!" height="30" width="30"> Última actualización el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
+	</div>
+	<div ng-if="alerta == 'N'">
+	   <h2>Actualizado el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
+	</div>
+</body>
+</html>
