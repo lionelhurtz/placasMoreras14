@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
 <body ng-controller="myController" onload="setInterval('location.reload()',300000)">
-	<h1 class="font-effect-shadow-multiple">Temperatura Recirculación Escalera A Moreras</h1>
+	<h1 class="font-effect-shadow-multiple" style="cursor: pointer;" onClick="location.reload();">Temperatura Recirculación Escalera A Moreras</h1>
 	<table>
 		<tr>
 			<td><div ng-app="app" class="ajustado2"><tg-thermometer-vertical percent="{{tempRecirculacion.value}}" unit="{{tempRecirculacion.unit}}"  height="220" /></tg-thermometer-vertical></div></td>
@@ -123,6 +123,7 @@
 	<div ng-if="alerta == 'N'">
 	   <h2>Actualizado el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
 	</div>
-	update({{carga}})
+	<!--input type="button" value="Recargar página" onClick="location.reload();" style="width: 200px; height: 30px; background: #6699FF; color: #ffffff; cursor: pointer; border: 0px;"/-->
+	{{carga | date:'mediumTime'}}
 </body>
 </html>

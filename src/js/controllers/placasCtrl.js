@@ -5,13 +5,10 @@ app.controller("myController", ['$scope', "$http", function($scope, $http) {
     $http.post("https://www.vbus.net/api/v4/diagram",{"encrypted_id":"c170f5650ed0b30b21af28a1d3f8424b"}).then(function(response) {
 
     var listaDatos = response.data;
-	console.log("Cambio");
-	console.log(listaDatos);
 	var fecha = new Date(listaDatos.series[0].data[listaDatos.series[0].data.length-1][0]);
-    $scope.carga = new Date();
+    $scope.carga = new Date().getTime();
 	$scope.fecActu = fecha;
-	console.log($scope.caraga);
-    //Calculamos el tiempo que tenemos datos:
+	//Calculamos el tiempo que tenemos datos:
     var tiempo = (listaDatos.series[0].data[listaDatos.series[0].data.length-1][0] - listaDatos.series[0].data[0][0])
     restoSeg = tiempo%60000;
     restoMin= (tiempo-restoSeg)%3600000;
