@@ -12,7 +12,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Open Sans', cursive;
+  font-family: 'Indie Flower', cursive;
   font-size: 26px;
   border-left: 10px;
   margin-bottom: 0px;
@@ -20,38 +20,38 @@ h2 {
 }
 
 h3 {
-  font-family: 'Open Sans', cursive;
+  font-family: 'Indie Flower', cursive;
   font-size: 20px;
   text-align: center;
 
 }
 
 h4 {
-  font-family: 'Open Sans', cursive;
+  font-family: 'Indie Flower', cursive;
   font-size: 26px;
   text-align: left;
 
 }
 
 h5 {
-  font-family: 'Open Sans', cursive;
+  font-family: 'Indie Flower', cursive;
   font-size: 20px;
   text-align: left;
 
 }
-
 h10 {
-  font-family: 'Open Sans', cursive;
-  font-size: 10px;
-  text-align: rigth;
+  font-family: 'Indie Flower', cursive;
+  font-size: 15px;
+  text-align: right;
 
 }
 li {
-  font-family: 'Open Sans', cursive;
+  font-family: 'Indie Flower', cursive;
   font-size: 20px;
   border-left: 10px;
   font-weight:bold;
 }
+
 table {
   text-align: center;
 
@@ -352,7 +352,7 @@ td {
     }
 
 table.table1{
-    font-family: 'Open Sans', cursive;
+    font-family: 'Indie Flower', cursive;
     font-size: 20px;
     font-weight: bold;
     line-height: 1.4em;
