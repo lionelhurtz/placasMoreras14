@@ -20,7 +20,7 @@
   <link rel="shortcut icon" href="assets/img/temp2.png">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
-<body ng-controller="myController" onload="setInterval('location.reload()',3600000)">
+<body ng-controller="myController" onload="setInterval('location.reload()',300000)">
 	<h1 class="font-effect-shadow-multiple">Temperatura Recirculación Escalera A Moreras</h1>
 	<table>
 		<tr>
@@ -123,5 +123,6 @@
 	<div ng-if="alerta == 'N'">
 	   <h2>Actualizado el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
 	</div>
+	update({{carga}})
 </body>
 </html>
