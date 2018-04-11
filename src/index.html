@@ -37,7 +37,7 @@
 		</tr>
 	</table>
 	<h2>Resumen datos:</h2>
-		<div ng-if="presion.value >2.6">
+		<div ng-if="presion.value >2.5">
 			<li> Presión actual {{presion.value}}{{presion.unit}} <img src="/assets/img/alerta_roja.png" title="Se ha superado la presion normal" alt="Alerta!!!" height="20" width="20">
 				<div ng-if="alertaPresion === true">
 					<img src="/assets/img/alerta_roja.png" alt="Alerta!!!" height="20" width="20"> Se ha producido una sobrepresión a las {{presion.inicioAlerta | date:'mediumTime'}} hasta las {{presion.finAlerta | date:'mediumTime'}}  valor máximo {{presion.maxValue}}
@@ -55,13 +55,13 @@
 			<li>Bomba Recirculación :<img src="/assets/img/Gerotor_Trans.gif" alt="Bomba activada" height="60" width="90" title="Activada"> encendida {{bombaRecirculacionTiempoOn}}</li>
 		</div>
 		<div ng-if="bombaRecirculacion === 'off'">
-			<li>Bomba Recirculación :<img src="/assets/img/Gerotor_off.jpg" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaRecirculacionTiempoOn}}</li>
+			<li>Bomba Recirculación :<img src="/assets/img/Gerotor_Trans_off.png" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaRecirculacionTiempoOn}}</li>
 		</div>
 		<div ng-if="bombaPrimario === 'on'">
 			<li>Bomba Primaria :<img src="/assets/img/Gerotor_Trans.gif" alt="Bomba activada" height="60" width="90" title="Activada"> encendida {{bombaPrimariaTiempoOn}}</li>
 		</div>
 		<div ng-if="bombaPrimario === 'off'">
-			<li>Bomba Primaria :<img src="/assets/img/Gerotor_off.jpg" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaPrimariaTiempoOn}}</li>
+			<li>Bomba Primaria :<img src="/assets/img/Gerotor_Trans_off.png" alt="Bomba desactivada" height="60" width="90" title="Desactivada"> encendida {{bombaPrimariaTiempoOn}}</li>
 		</div>
  	<h2>Medias de las ultimas {{tiempoDatos}}:</h2>
 <!--

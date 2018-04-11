@@ -37,7 +37,7 @@ app.controller("myController", ['$scope', "$http", function($scope, $http) {
     $scope.tempCaptadores.tempMax = tempMax;
     $scope.tempCaptadores.tempMin = tempMin;
 
-    if(listaDatos.series[5].data[listaDatos.series[5].data.length-1][0] >0) {
+    if(listaDatos.series[5].data[listaDatos.series[5].data.length-1][1] >0) {
       $scope.bombaPrimario='on';
     } else {
       $scope.bombaPrimario='off';
@@ -134,7 +134,7 @@ app.controller("myController", ['$scope', "$http", function($scope, $http) {
     $scope.tempRecirculacion.tempMax = tempMax;
     $scope.tempRecirculacion.tempMin = tempMin;
 
-    if(listaDatos.series[6].data[listaDatos.series[6].data.length-1][0] >0) {
+    if(listaDatos.series[6].data[listaDatos.series[6].data.length-1][1] >0) {
       $scope.bombaRecirculacion='on';
     } else {
       $scope.bombaRecirculacion='off';
