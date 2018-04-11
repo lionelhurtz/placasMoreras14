@@ -121,9 +121,9 @@
     <h2><img src="/assets/img/alerta_roja.png" alt="Alerta!!!" height="30" width="30"> Última actualización el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
 	</div>
 	<div ng-if="alerta == 'N'">
-	   <h2>Actualizado el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
+	   <h2 style="cursor: pointer;" onClick="location.reload();">Actualizado el {{tempCaptadores.timestamp | date:'fullDate' }} a las {{tempCaptadores.timestamp | date:'mediumTime'}}</h2>
 	</div>
 	<!--input type="button" value="Recargar página" onClick="location.reload();" style="width: 200px; height: 30px; background: #6699FF; color: #ffffff; cursor: pointer; border: 0px;"/-->
-	<h10>Página recargada el {{carga | date:'fullDate' }} a las {{carga | date:'mediumTime'}}</h10>
+	<h10 style="cursor: pointer;" onClick="location.reload();">Página recargada el {{carga | date:'fullDate' }} a las {{carga | date:'mediumTime'}}</h10>
 </body>
 </html>
